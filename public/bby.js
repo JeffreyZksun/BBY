@@ -30,7 +30,7 @@ bby.jsonp = function(url, params){
 }
 
 bby.init = function(options){
-  url = options.url;
+  var url = options.url;
   var clientHeight = window.innerHeight,
       scrollHeight = document.documentElement.srollHeight,
       pageHeight = clientHeight;
@@ -41,8 +41,8 @@ bby.init = function(options){
   {
     url += '/';
   }
-  sendUrl = url + 'send';
-  proxyUrl = url + 'proxy?height=' + pageHeight;
+  var sendUrl = url + 'send';
+  var proxyUrl = url + 'proxy?height=' + pageHeight;
   bby.config.sendpoint_url = sendUrl;
   bby.config.inframeproxy_url = proxyUrl; 
   if(location.search.index("bby_admin") > -1){
