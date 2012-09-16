@@ -31,15 +31,21 @@ bby.jsonp = function(url, params){
 
 bby.init = function(options){
   url = options.url;
+  var clientHeight = window.innerHeight,
+      scrollHeight = document.documentElement.srollHeight,
+      pageHeight = clientHeight;
+  if(scollHeight > clientHeihgt){
+    pageHeight = scrollHeight;
+  }
   if(url[url.length-1] != '/')
   {
     url += '/';
   }
   sendUrl = url + 'send';
-  proxyUrl = url + 'proxy';
+  proxyUrl = url + 'proxy?height=' + pageHeight;
   bby.config.sendpoint_url = sendUrl;
   bby.config.inframeproxy_url = proxyUrl; 
-  if(location.search.index("admin") > -1){
+  if(location.search.index("bby_admin") > -1){
     bby.insertIframe();
   }else{
     bby.start();
