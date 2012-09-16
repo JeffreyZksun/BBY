@@ -4,10 +4,16 @@ function watchUrl(url){
 }
 
 function setPageSize(width, height){
-  style = document.getElementById('watchPage').style
-  if(height) {
-    style.height = height + 'px'
-  }
+
+  heatmapEl = document.getElementById('heatmapEl')
+  watchPage = document.getElementById('watchPage')
+  //watchPage.offsetWidth = width + 'px'
+  watchPage.style.height = height + 'px'
+  heatmapEl.style.width = watchPage.offsetWidth + 'px'
+  heatmapEl.style.height = height + 'px'
+  
+  init()
+  
 }
 
 function init(){
@@ -18,12 +24,6 @@ function init(){
       "opacity": 40,
       "gradient": { 0.45: "rgb(0,0,255)", 0.55: "rgb(0,255,255)", 0.65: "rgb(0,255,0)", 0.95: "yellow", 1.0: "rgb(255,0,0)" }
   }
-
-  heatmapEl = document.getElementById('heatmapEl')
-  watchPage = document.getElementById('watchPage')
-  heatmapEl.style.width = watchPage.offsetWidth + 'px'
-  heatmapEl.style.height = watchPage.offsetHeight + 'px'
-
   
   var heatmap = heatmapFactory.create(config)
   var socket = io.connect('http://localhost:3000')
@@ -46,5 +46,4 @@ function init(){
   watchUrl(url)
 }
 
-init()
 
