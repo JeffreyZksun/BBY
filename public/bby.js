@@ -1,6 +1,7 @@
 bby = {};
 bby.config = {
-	// sendpoint_url:"http://192.168.8.174/send"
+	// sendpoint_url:"http://192.168.8.174/send",
+    // inframeproxy_url:""
 };
 
 bby.start = function(){
@@ -35,6 +36,18 @@ bby.init = function(options){
     url += '/';
   }
   sendUrl = url + 'send';
+  proxyUrl = url + 'proxy';
   bby.config.sendpoint_url = sendUrl;
-  bby.start();
+  bby.config.inframeproxy_url = proxyUrl; 
+  if(location.search.index("admin") > -1){
+    bby.insertIframe();
+  }else{
+    bby.start();
+  }
+}
+
+bby.insertIframe = function(){
+    var iframe = document.createElement("iframe");
+    iframe.src= bby.confing.iframeproxy_url;
+    document.head.appendChild(iframe);
 }
