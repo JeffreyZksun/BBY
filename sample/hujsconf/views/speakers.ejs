@@ -1,0 +1,42 @@
+     <section id="speakers" class="container light pal2">
+        <div class="content">
+            <div class="title">
+                <h1>Speakers <span>res.render('presentation')</span></h1>
+                <div class="description">
+                    <nav id="filter"></nav>
+                </div>
+            </div>
+        
+            <article class="portfolio">
+                <ul id="stage">
+                    <%  for (var key in schedule.sort(function(x,y){
+                            if (x.speaker === undefined)
+                                return -1;
+                            else if (y.speaker == undefined)
+                                return 1;
+
+                            var xspeaker, yspeaker;
+                            
+                            xspeaker = x.speaker.name;
+                            yspeaker = y.speaker.name;
+
+                            if (xspeaker === yspeaker) 
+                                return 0
+                            else if (xspeaker < yspeaker)
+                                return -1;
+                            else
+                                return 1;
+                        }
+                    )) { %>
+                    <%  var talk = schedule[key]; %>
+                    <%  var speaker = talk.speaker; %>
+                    <%  if(speaker && speaker.should_display) { %>
+                        <li data-tags="<%= speaker.tags %>"><div align="center" class="thumb"><a href="<%=speaker.url%>"><img src="images/speaker/<%= speaker.image%>" alt="<%=speaker.name%>" /></a></div>
+                            <div class="info"><h3><%=speaker.name%> <span><a href="<%=speaker.url%>" target="_blank"><%=speaker.url.replace(/http:\/\/.+\/(.+)/, "@$1")%></a></span></h3><p><%- speaker.blurb%></p></div>
+                        </li>
+                    <%      } %>
+                    <%  } %>
+                </ul>
+            </article>
+        </div>
+    </section>
