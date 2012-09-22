@@ -1,8 +1,7 @@
 {
-    "name": "BBY-server"
+    "name": "bby-server"
   , "version": "0.0.1"
   , "author": "Fossil Jue <imzshh@gmail.com>"
-  , "private": true
   , "dependencies": {
       "zappajs" : ">=0.4.0"
   }
